@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y4m-fw-oes">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="aQa-CN-w6C">
+            <objects>
+                <tableViewController id="QDA-fu-cpB" customClass="NewsTableViewController" customModule="whereMyNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AWW-zf-Jnx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="aPR-u8-REi">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="🛠"/>
+                                <segment title="⚽️"/>
+                                <segment title="💼"/>
+                                <segment title="🔬"/>
+                                <segment title="👩‍⚕️"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedPanelPressed:forEvent:" destination="QDA-fu-cpB" eventType="valueChanged" id="ubo-sK-lao"/>
+                            </connections>
+                        </segmentedControl>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="137" id="4wT-2L-Vre" customClass="NewsViewCell" customModule="whereMyNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="60" width="375" height="137"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4wT-2L-Vre" id="8jt-ga-21G">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-G9-ZRs" customClass="ImageView" customModule="whereMyNewsApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="q5c-G9-ZRs" firstAttribute="top" secondItem="8jt-ga-21G" secondAttribute="top" id="B6g-i7-nDH"/>
+                                        <constraint firstAttribute="bottom" secondItem="q5c-G9-ZRs" secondAttribute="bottom" id="ZpF-jP-Kkk"/>
+                                        <constraint firstAttribute="trailing" secondItem="q5c-G9-ZRs" secondAttribute="trailing" id="apA-Jd-M1b"/>
+                                        <constraint firstItem="q5c-G9-ZRs" firstAttribute="leading" secondItem="8jt-ga-21G" secondAttribute="leading" id="ohU-V8-tXH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="newsImageView" destination="q5c-G9-ZRs" id="vda-hQ-t6E"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QDA-fu-cpB" id="0FI-AZ-fNa"/>
+                            <outlet property="delegate" destination="QDA-fu-cpB" id="JaS-hG-IbF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="pLN-ec-Rqb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AL8-pB-KmQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-71.200000000000003" y="237.93103448275863"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ffD-I2-cly">
+            <objects>
+                <navigationController id="y4m-fw-oes" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bnJ-NY-ShT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QDA-fu-cpB" kind="relationship" relationship="rootViewController" id="d3p-OW-5oc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ay-Er-Cet" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-991" y="238"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
