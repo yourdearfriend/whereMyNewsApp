@@ -1,3 +1,11 @@
+//
+//  ImageView.swift
+//  RickAndMorty
+//
+//  Created by Alexey Efimov on 27.09.2020.
+//  Copyright © 2020 Alexey Efimov. All rights reserved.
+//
+
 import UIKit
 
 class ImageView: UIImageView {
@@ -7,21 +15,24 @@ class ImageView: UIImageView {
             return
         }
         
-        //  Загрузка изображения из кеша, если оно есть
-        if let cachedImage = getCachedImaged(url: imageURL) {
+        // Загрузка изображения из кеша, если оно там есть
+        if let cachedImage = getCachedImage(from: imageURL) {
             image = cachedImage
             return
         }
         
-        // Загрузка изображения из сети, если нет в кэше
+        // Если изображения в кеше нет, то грузим его из сети
         ImageManager.shared.getImage(from: imageURL) { (data, response) in
+            DispatchQueue.main.async {
                 self.image = UIImage(data: data)
-            // Сохраняем данные в кэше
-            self.saveDatToCach(with: data, and: response)
+            }
+            
+            // Сохраняем данные в кеш
+            self.saveDataToCach(with: data, and: response)
         }
     }
     
-    private func getCachedImaged(url: URL) -> UIImage? {
+    private func getCachedImage(from url: URL) -> UIImage? {
         let urlRequest = URLRequest(url: url)
         if let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
             return UIImage(data: cachedResponse.data)
@@ -29,12 +40,10 @@ class ImageView: UIImageView {
         return nil
     }
     
-    private func saveDatToCach(with data: Data, and response: URLResponse) {
+    private func saveDataToCach(with data: Data, and response: URLResponse) {
         guard let urlResponse = response.url else { return }
-        let cachedRespone = CachedURLResponse(response: response, data: data)
         let urlRequest = URLRequest(url: urlResponse)
-        URLCache.shared.storeCachedResponse(cachedRespone, for: urlRequest)
+        let cachedResponse = CachedURLResponse(response: response, data: data)
+        URLCache.shared.storeCachedResponse(cachedResponse, for: urlRequest)
     }
 }
-
-

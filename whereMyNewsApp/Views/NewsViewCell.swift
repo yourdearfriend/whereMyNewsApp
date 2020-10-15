@@ -9,10 +9,11 @@ import UIKit
 
 class NewsViewCell: UITableViewCell {
     
+    @IBOutlet var nameNewsLabel: UILabel!
     @IBOutlet var newsImageView: ImageView!
     
     func configure(with news: Articles) {
-        guard let image = news.urlToImage else { return }
-            self.newsImageView.fetchImage(from: image)
+        newsImageView.fetchImage(from: news.urlToImage ?? "news")
+        nameNewsLabel.text = news.title ?? "News"
     }
 }

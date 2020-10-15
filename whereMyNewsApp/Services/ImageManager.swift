@@ -12,17 +12,17 @@ class ImageManager {
     
     private init() {}
     
-    func getImage(from url: URL, complition: @escaping (Data, URLResponse) -> Void) {
+    func getImage(from url: URL, comletion: @escaping (Data, URLResponse) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print(error)
                 return
             }
             
             guard let data = data, let response = response else { return }
             guard let responseURL = response.url else { return }
             guard responseURL == url else { return }
-            complition(data, response)
-        }
+            comletion(data, response)
+        }.resume()
     }
 }

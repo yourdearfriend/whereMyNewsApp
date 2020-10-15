@@ -37,7 +37,6 @@ class NetworkManager {
             }
             
         }.resume()
-        
     }
     
     func fetchImage(url: String?) -> UIImage? {
@@ -46,6 +45,4 @@ class NetworkManager {
         guard let imageData = try? Data(contentsOf: imageURL) else { return nil}
         return UIImage(data: imageData)
     }
-    
-    
 }
